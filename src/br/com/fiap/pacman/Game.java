@@ -37,13 +37,13 @@ public class Game extends JFrame implements KeyListener {
 
 	private void init() {
 		setLayout(null);
-		player.setScreenSize(SCREENSIZE);
-		player.setLife(15);
+		player.setTamanhoPixelTela(SCREENSIZE);
+		player.setQtdVida(15);
 
-		ghost1.setScreenSize(SCREENSIZE);
-		ghost2.setScreenSize(SCREENSIZE);
-		ghost3.setScreenSize(SCREENSIZE);
-		ghost4.setScreenSize(SCREENSIZE);
+		ghost1.setTamanhoPixelTela(SCREENSIZE);
+		ghost2.setTamanhoPixelTela(SCREENSIZE);
+		ghost3.setTamanhoPixelTela(SCREENSIZE);
+		ghost4.setTamanhoPixelTela(SCREENSIZE);
 		
 		add(imgPlayer);
 		add(imgGhost1);
@@ -71,13 +71,13 @@ public class Game extends JFrame implements KeyListener {
 		updateLocation(imgGhost4, ghost4);
 		updateLocation(imgBomb, bomb);
 		updateLocation(imgBooster, booster);
-		setTitle("Life: " + player.getLife());
+		setTitle("Life: " + player.getQtdVida());
 		SwingUtilities.updateComponentTreeUI(this);
 
 	}
 
 	private void updateLocation(JLabel label, GameObject object) {
-		label.setBounds(object.getX(), object.getY(), 50, 50);
+		label.setBounds(object.getPosicaoX(), object.getPosicaoY(), 50, 50);
 		ImageIcon myImage = (ImageIcon) label.getIcon();
         Image img = myImage.getImage();
         Image newImg = img.getScaledInstance(label.getWidth(), label.getHeight(),Image.SCALE_SMOOTH);
@@ -85,7 +85,7 @@ public class Game extends JFrame implements KeyListener {
 	}
 
 	private void run() {
-		while (player.getLife() > 0) {
+		while (player.getQtdVida() > 0) {
 			
 			//coloque aqui os métodos de movimentação e colisão 
 			
@@ -102,10 +102,10 @@ public class Game extends JFrame implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char c = e.getKeyChar();
-		if (c == '8' || c == 'w') player.setDirection(0);	
-		if (c == '6' || c == 'd') player.setDirection(90);	
-		if (c == '2' || c == 's') player.setDirection(180);	
-		if (c == '4' || c == 'a') player.setDirection(270);	
+		if (c == '8' || c == 'w') player.setGrauDirecao(0);	
+		if (c == '6' || c == 'd') player.setGrauDirecao(90);	
+		if (c == '2' || c == 's') player.setGrauDirecao(180);	
+		if (c == '4' || c == 'a') player.setGrauDirecao(270);	
 	}
 
 	@Override
